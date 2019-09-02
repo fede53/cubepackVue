@@ -1,0 +1,117 @@
+@mixin campiQr()
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+@mixin contenuti()
+{
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+
+@mixin btn($w: 80%, $bg: #d10071, $color: #fff, $lineheight:5rem, $important: 'false')
+{
+    font-size: 1.6rem;
+    line-height: $lineheight;
+    @if $important == 'false' {
+        color: $color;
+        background: $bg;
+    } @else {
+        color: $color!important;
+        background: $bg!important;
+    }
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    border: 0;
+    @if $w != auto {
+        width: $w;
+    } @else {
+        padding: 0 52px;
+    }
+    &:hover{
+        @if $important == 'false' {
+            background: rgba($bg, .8);
+        } @else {
+            background: rgba($bg, .8)!important;
+        }
+
+    }
+}
+
+@mixin btn_replace($bg: #191919, $color: #fff)
+{
+
+    color: $color!important;
+    background: $bg!important;
+
+    &:hover{
+        background: rgba($bg, .8)!important;
+    }
+}
+
+
+
+
+
+
+@mixin parallax($h){
+    height: $h;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+
+}
+
+@mixin getTitle(){
+    font-size: 3.6rem;
+    text-transform: uppercase;
+}
+
+@mixin getSubtitle(){
+    font-size: 2.4rem;
+    text-transform: uppercase;
+}
+
+@mixin getSmallTitle(){
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.5);
+}
+
+@mixin getSection(){
+    width: 1250px;
+    margin: 0 auto;
+    padding: 75px 0;
+}
+
+
+@mixin marginBottom($opz:'small'){
+    @if $opz == 'small' {
+        margin-bottom: 1.4rem;
+    } @elseif $opz == 'big' {
+        margin-bottom: 2.8rem;
+    } @else {
+        margin-bottom: 3.6rem;
+    }
+
+}
+
+@mixin marginTop($opz:'small'){
+    @if $opz == 'small' {
+        margin-top: 1.4rem;
+    } @elseif $opz == 'big' {
+        margin-top: 2.8rem;
+    } @else {
+        margin-top: 3.6rem;
+    }
+
+}

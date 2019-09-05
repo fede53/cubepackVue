@@ -95,6 +95,12 @@ class CpMenu extends CpCoreObj {
                         click: (menuItem, currentWindow) => {
                             super.main.window.mainWindow.webContents.send(CpMenu.ACCOUNT_SETTINGS)
                         }
+                    },
+                    {
+                        label: 'Users',
+                        click: (menuItem, currentWindow) => {
+                            super.main.window.mainWindow.webContents.send(CpMenu.USERS)
+                        }
                     }
                 ]
             }
@@ -124,8 +130,11 @@ class CpMenu extends CpCoreObj {
                             super.main.window.mainWindow.webContents.send(CpMenu.PROJECT_NEW)
                         }
                     },
-                    { type: 'separator'},
-                    { label: 'Clone Project',
+                    {
+                        type: 'separator'
+                    },
+                    {
+                        label: 'Clone Project',
                         click: (menuItem, currentWindow) => {
                             super.main.window.mainWindow.webContents.send(CpMenu.PROJECT_CLONE)
                         }
@@ -141,7 +150,9 @@ class CpMenu extends CpCoreObj {
                             super.main.window.mainWindow.webContents.send(CpMenu.ACCOUNT_SETTINGS)
                         }
                     },
-                    { type: 'separator'},
+                    {
+                        type: 'separator'
+                    },
                     {
                         label: 'Users',
                         click: (menuItem, currentWindow) => {

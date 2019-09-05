@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <v-app dark>
     <router-view/>
     <messages />
-  </div>
+  </v-app>
 </template>
 
 <script>

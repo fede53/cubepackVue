@@ -6,10 +6,9 @@ import Vuetify from 'vuetify'
 import VueLodash from 'vue-lodash'
 
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
-import './assets/css/style.css' // Ensure you are using css-loader
-import './assets/css/fontawesome/css/fontawesome.min.css'
-import './assets/css/fontawesome/css/light.min.css'
+import './assets/css/fontawesome/css/all.min.css'
 import 'vuetify/dist/vuetify.min.css'
+import './assets/css/style.css' // Ensure you are using css-loader
 
 import colors from 'vuetify/lib/util/colors'
 
@@ -23,22 +22,29 @@ new Vue({
     components: { App },
     router,
     store,
-    template: '<App/>',
     vuetify: new Vuetify({
         theme: {
-            light: {
-                primary: '#cb2390',
-                secondary: colors.red.lighten4, // #FFCDD2
-                accent: colors.indigo.base, // #3F51B5
+            dark: true,
+            themes: {
+                light: {
+                    primary: '#cb2390',
+                },
+                dark: {
+                    primary: '#cb2390',
+                    secondary: '#424242',
+                    accent: '#82B1FF',
+                    error: '#FF5252',
+                    info: '#2196F3',
+                    success: '#4CAF50',
+                    warning: '#FFC107',
+                }
             },
-            dark: {
-                primary: '#cb2390',
-                secondary: colors.red.lighten4, // #FFCDD2
-                accent: colors.indigo.base, // #3F51B5
-            }
+
+
         },
         iconfont: 'md'
-    })
+    }),
+    render: h => h(App),
 }).$mount('#app')
 
 require('electron').ipcRenderer.on('project_new', (event , data) => {
@@ -54,6 +60,6 @@ require('electron').ipcRenderer.on('settings', (event , data) => {
 });
 
 require('electron').ipcRenderer.on('users', (event , data) => {
-    store.dispatch('openModal', {id: 0, module: 'users', opz: 'list'})
+    router.push( '/users' );
 });
 

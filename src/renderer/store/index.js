@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import VueLodash from 'vue-lodash'
 import appService from '../server/app.service'
 import projectsModule from './modules/projects'
+import usersModule from './modules/users'
 
 import { getField, updateField } from 'vuex-map-fields';
 import router from '../router'
@@ -24,7 +25,9 @@ const state  = {
 
 const store = new Vuex.Store({
     modules: {
-        projectsModule
+        projectsModule,
+        usersModule
+
     },
     state,
     getters: {

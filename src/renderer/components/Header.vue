@@ -2,9 +2,9 @@
 
     <header>
 
-        <a href="" class="logo">
+        <router-link to="/dashboard" class="logo">
             <img src="~@/assets/img/logo.png" alt="">
-        </a>
+        </router-link>
 
         <div class="version"></div>
 
@@ -31,7 +31,7 @@
                     .then(() => {
                         this.$router.replace("/login")
                     })
-            },
+            }
 
         },
 

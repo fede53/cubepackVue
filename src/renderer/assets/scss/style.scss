@@ -1,16 +1,6 @@
-
-
-@import "./fontawesome/scss/fontawesome.scss";
-@import "./fontawesome/scss/regular.scss";
-@import "./fontawesome/scss/solid.scss";
-@import "./fontawesome/scss/brands.scss";
-@import "./fontawesome/scss/light.scss";
-
 @import
 "reset",
 "mixin";
-
-
 
 html{
   font-size: 10px!important;
@@ -27,6 +17,22 @@ html{
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
+}
+
+.v-application ol, .v-application ul {
+  padding-left: 0;
+}
+.v-treeview-node__root {
+  min-height: 36px;
+}
+
+.v-application .blue--text {
+  color: #cb2390!important;
+  caret-color: #cb2390!important;
+}
+
+section .dashboard .file .body {
+  padding: 18px;
 }
 
 textarea, select, input[type=text],input[type=email],input[type=password],  button {
@@ -351,9 +357,6 @@ section{
         @include contenuti();
       }
     }
-
-
-
   }
 
 .lista-console{
@@ -1109,6 +1112,38 @@ display: block;
   }
 }
 
+.listCompoment{
+  padding: 104px 20px 0;
+
+  .intro{
+    background: #333333;
+    padding: 10px;
+    display: flex;
+    border-bottom: 4px solid #d10071;
+
+    i{
+      color: #d10071;
+      font-size: 3rem;
+      margin-right: 20px;
+    }
+
+    .inner{
+      h1{
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 0;
+        line-height: 3rem;
+
+      }
+      .content{
+        color: #fff;
+        @include contenuti();
+      }
+    }
+  }
+
+}
+
 
 .cubepackModal{
   .v-dialog__content{
@@ -1128,4 +1163,8 @@ display: block;
 }
 .transitiondetail-enter, .transitiondetail-leave {
   opacity: 0;
+}
+
+.theme--dark.v-data-table thead tr th, .v-data-table td {
+  vertical-align: middle;
 }

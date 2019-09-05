@@ -1,0 +1,7 @@
+.electron-vue
+build
+dist
+dist/electron/main.js
+node_modules
+old
+static

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import appService from '../../server/app.service'
 import VueLodash from 'vue-lodash'
 
-const ClientFTP = require('ftp');
+import  CpFtp from '../../components/Widget/CpFtp';
 const fs = require('fs');
 const path = require('path');
 const mkDirRec = require('mkdir-recursive');
@@ -16,7 +16,8 @@ const state = {
     project: [],
     projectFiles: [],
     projectFilesSelectedItems: [],
-    projectUser: [],
+    projectLockedSelectedItems: [],
+    projectUser: {},
     projectDetail: [],
     id: 0,
     loaded: false
@@ -27,6 +28,7 @@ const getters = {
     project: state => state.project,
     projectFiles: state => state.projectFiles,
     projectFilesSelectedItems: state => state.projectFilesSelectedItems,
+    projectFilesLockedItems: state => state.projectFilesLockedItems,
     projectUser: state => state.projectUser,
     projectDetail: state => state.projectDetail,
     id: state => state.id,
@@ -128,7 +130,7 @@ const actions = {
 
     unlockFiles(context, credentials) {
         appService.connectToServer(credentials).then(data => {
-            context.commit('file', data)
+            context.commit('unlockFiles', data)
         }).catch(error => {
             this.error = error.toString()
             this.dispatch('addMessage', this.error)
@@ -140,12 +142,17 @@ const actions = {
             context.commit('downloadFiles', data)
         }).catch(error => {
             this.error = error.toString()
+            console.log(error.toString())
             this.dispatch('addMessage', this.error)
         })
     },
 
     setProjectFilesSelectedItems(context, data) {
         context.commit('setProjectFilesSelectedItems', data)
+    },
+
+    setProjectFilesLockedtems(context, data) {
+        context.commit('setProjectFilesLockedItems', data)
     },
 
     fileCleaner(context, data) {
@@ -167,7 +174,7 @@ const actions = {
     reset() {
         state.projects = []
         state.project = []
-        state.projectUser = []
+        state.projectUser = {}
         state.projectDetail = []
         state.id = []
     },
@@ -196,67 +203,51 @@ const mutations = {
 
     create(state, data) {
         state.project = []
-        state.projectUser = []
+        state.projectUser = {}
         state.project.type = 'cube'
+        state.projectUser.local_folder = 'test'
     },
 
     save(state) {
         state.project = []
-        state.projectUser = []
+        state.projectUser = {}
     },
 
     delete(state) {
         state.project = []
-        state.projectUser = []
+        state.projectUser = {}
     },
 
     file(state, data) {
         state.projectFiles = data.items
+        state.projectFilesLockedItems = data.checked
     },
 
     lockFiles(state, data) {
-        console.log(state.projectFilesSelectedItems)
         this.dispatch('addMessage', 'Files Locked')
     },
 
-    downloadFiles(state, data) {
-        var ftpData = {
-            ftp_server: '151.236.33.162',
-            ftp_username: 'cubepack',
-            ftp_password: 'Vfzh88^3',
-            ftp_folder: '/httpdocs'
-        }
-        var localPath = '/Users/federicogermi/Desktop/testftp'
-        var connectionParams = { host: ftpData.ftp_server, port:'21', user: ftpData.ftp_username, password: ftpData.ftp_password, keepalive: 10000 }
-        var ftpClient = new ClientFTP();
-        ftpClient.on('ready', function(err) {
-            for( var i=0; i<data.result.length; i++) {
-                var fileName = data.result[i];
-                (
-                    function (localPath, fileName) {
-                        ftpClient.get(ftpData.ftp_folder + fileName, (err, stream) => {
+    unlockFiles(state, data) {
+        state.projectFiles = data.items
+        var filesToUpload = state.projectFilesLockedItems;
+        state.projectFilesLockedItems = data.checked
+        //To upload
+        console.log(filesToUpload)
+    },
 
-                            if (err) throw err;
-                            stream.once('close', () => {
-                                ftpClient.end();
-                            });
-                            console.log('CREATE -> '+localPath + path.dirname(fileName));
-                            mkDirRec.mkdir(localPath + path.dirname(fileName), (err) => {
-                                if (err) console.log(err);
-                                console.log('INSIDE -> '+localPath + fileName);
-                                stream.pipe(fs.createWriteStream(localPath + fileName));
-                            });
-                        })
-                    }
-                )(localPath, fileName)
-            }
-        });
-        ftpClient.connect(connectionParams);
+    downloadFiles(state, data) {
+        var localPath = state.projectDetail.local_folder
+        var ftpInstance = new CpFtp()
+        ftpInstance.downloadFiles(data.result, localPath)
     },
 
     setProjectFilesSelectedItems(state, data) {
        state.projectFilesSelectedItems = data
     },
+
+    setProjectFilesLockedItems(state, data) {
+        state.projectFilesLockedItems = data
+     },
 
     fileCleaner(state, data) {
         state.projectFiles = []

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="cubepackModal">
-            <v-dialog v-model="dialog" @click:outside="openModal()" fullscreen transition="dialog-bottom-transition">
+            <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition">
                 <v-card>
                     <div class="modal">
                         <Project v-if="opz=='projects'" />

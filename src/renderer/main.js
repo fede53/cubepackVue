@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import Vuetify from 'vuetify'
 import VueLodash from 'vue-lodash'
+import Vuelidate from 'vuelidate'
 
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import './assets/css/fontawesome/css/all.min.css'
@@ -12,6 +13,7 @@ import './assets/css/style.css' // Ensure you are using css-loader
 
 import colors from 'vuetify/lib/util/colors'
 
+Vue.use(Vuelidate)
 Vue.use(Vuetify)
 Vue.use(VueLodash)
 Vue.config.productionTip = false
@@ -37,6 +39,7 @@ new Vue({
                     info: '#2196F3',
                     success: '#4CAF50',
                     warning: '#FFC107',
+                    background: colors.indigo.base
                 }
             },
 
@@ -48,15 +51,15 @@ new Vue({
 }).$mount('#app')
 
 require('electron').ipcRenderer.on('project_new', (event , data) => {
-    store.dispatch('openModal', {id: 0, module: 'projects', opz: 'projects'})
+    store.dispatch('openModal', {id: null, module: 'projects', opz: 'projects'})
 });
 
 require('electron').ipcRenderer.on('project_clone', (event , data) => {
-    store.dispatch('openModal', {id: 0, module: 'projects', opz: 'clone'})
+    store.dispatch('openModal', {id: null, module: 'projects', opz: 'clone'})
 });
 
 require('electron').ipcRenderer.on('settings', (event , data) => {
-    store.dispatch('openModal', {id: 0, module: 'settings', opz: 'list'})
+    store.dispatch('openModal', {id: null, module: 'settings', opz: 'list'})
 });
 
 require('electron').ipcRenderer.on('users', (event , data) => {

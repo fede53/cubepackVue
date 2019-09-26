@@ -1,8 +1,12 @@
 <template>
     <div class="console">
-        <div class="body">
+        <v-card
+                class="pa-4"
+                width="100%"
+                height="100%"
+        >
             <ul class="lista-console"></ul>
-        </div>
+        </v-card>
     </div>
 </template>
 

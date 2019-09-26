@@ -1,6 +1,8 @@
 import axios from 'axios'
 
+//axios.defaults.baseURL = 'http://cubepack.blastdemo.com/api/'
 axios.defaults.baseURL = 'http://cubepack.local/api/'
+//axios.defaults.baseURL = 'http://cubepack.blastdemo.com/api/'
 
 axios.interceptors.request.use(function (config) {
   const token = window.localStorage.getItem('token')

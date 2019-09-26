@@ -10,14 +10,14 @@
 
 @mixin contenuti()
 {
-    font-size: 1.4rem;
-    line-height: 1.8rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
 }
 
 
 @mixin btn($w: 80%, $bg: #d10071, $color: #fff, $lineheight:5rem, $important: 'false')
 {
-    font-size: 1.6rem;
+    font-size: 1rem;
     line-height: $lineheight;
     @if $important == 'false' {
         color: $color;
@@ -72,17 +72,17 @@
 }
 
 @mixin getTitle(){
-    font-size: 3.6rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
 }
 
 @mixin getSubtitle(){
-    font-size: 2.4rem;
+    font-size: 1rem;
     text-transform: uppercase;
 }
 
 @mixin getSmallTitle(){
-    font-size: 1.8rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     color: rgba(0,0,0,.5);
 }

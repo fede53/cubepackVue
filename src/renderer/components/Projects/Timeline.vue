@@ -1,12 +1,23 @@
 <template>
         <div>
             <div class="timeline">
-                <div class="body"><ul class="lista-histories"></ul></div>
+                <v-card
+                        class="pa-4"
+                        width="100%"
+                        height="80%"
+                >
+                    <ul class="lista-histories"></ul>
+                </v-card>
+
                 <div id="action_chat"></div>
-                <div class="write">
+                <v-card
+                        class="pa-4 write"
+                        width="100%"
+                        height="18%"
+                >
                     <textarea id="chat_send"></textarea>
-                    <input type="button" id="btn_chat_send" value="Send">
-                </div>
+                    <v-btn color="primary" id="btn_chat_send">Send</v-btn>
+                </v-card>
             </div>
         </div>
 </template>

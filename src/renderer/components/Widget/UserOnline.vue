@@ -1,12 +1,7 @@
 <template>
     <div>
+        <Header title="User" icon_sx="fal fa-users" />
 
-        <div class="intro">
-            <i class="fal fa-users"></i>
-            <div class="inner">
-                <h1>User</h1>
-            </div>
-        </div>
         <ul class="user-list">
             <li v-for="user in userOnline">
                 <div class="avatar placeholder"><i class="fal fa-user"></i></div>
@@ -22,9 +17,13 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import Header from '@/components/Blocks/Header'
 
   export default {
     name: 'UserOnline',
+    components: {
+      Header
+    },
     computed: {
         ...mapGetters(['userOnline'])
     },

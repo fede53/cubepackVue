@@ -1,12 +1,12 @@
 <template>
     <div class="listCompoment">
 
-        <div class="intro">
-            <i class="fal fa-project-diagram"></i>
-            <div class="inner">
-                <h1 @click="pProject()">Projects list</h1>
-            </div>
-        </div>
+        <Header title="Users" icon_sx="fal fa-project-diagram" v-bind:r="{ name: 'userForm', params: { action: 'create' }}" r_icon="mdi-plus" />
+
+        <v-card
+                class="pa-4"
+                width="100%"
+        >
 
         <v-data-table
                 :headers="headers"
@@ -15,8 +15,6 @@
         >
 
             <template v-slot:item.action="{ item }">
-
-
                 <router-link class="button" :to="{ name: 'userForm', params: { id: item.id, action: 'edit' } }">
                     <v-btn elevation="0" class="mx-2" fab dark small color="primary">
                         <i class="fal fa-edit" style="font-size: 16px"></i>
@@ -27,24 +25,24 @@
                         <i class="fal fa-trash-alt" style="font-size: 16px"></i>
                     </v-btn>
                 </a>
-
-
             </template>
         </v-data-table>
 
         <v-dialog v-model="dialog" max-width="290">
             <v-card>
                 <v-card-title class="headline">Sei sicuro?</v-card-title>
-                <v-card-text>
+                <v-card-text class="subtitle-1">
                     L'elemento verrà eliminato e non potrà essere ripristinato
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" flat="flat" @click="idSelected = null; dialog = false">Annulla</v-btn>
-                    <v-btn color="primary" flat="flat" @click="deleteUser(idSelected); dialog = false">Ok cancella</v-btn>
+                    <v-btn color="primary" @click="idSelected = null; dialog = false">Annulla</v-btn>
+                    <v-btn color="primary" @click="deleteUser(idSelected); dialog = false">Ok cancella</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+        </v-card>
     </div>
 
 </template>
@@ -52,6 +50,8 @@
 <script>
 
     import { mapGetters } from 'vuex'
+    import Header from '@/components/Blocks/Header'
+
     export default {
         data: () => ({
             dialog: false,
@@ -65,6 +65,9 @@
             desserts: [],
             editedIndex: -1
         }),
+        components: {
+            Header
+        },
         computed: {
             ...mapGetters('usersModule', ['users'])
         },

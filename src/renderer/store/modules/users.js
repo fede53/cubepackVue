@@ -51,8 +51,8 @@ const actions = {
         })
     },
 
-    edit (context, credentials) {
-        appService.connectToServer(edit).then(data => {
+    save (context, credentials) {
+        appService.connectToServer(credentials).then(data => {
             if( data.success ) {
                 context.commit('save')
                 this.dispatch('addMessage', data)

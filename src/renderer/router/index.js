@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
-import Layout from '@/components/Layout'
 
 Vue.use(Router)
 
@@ -16,60 +15,60 @@ const router = new Router({
         },
         {
             path: '',
-            component: Layout,
+            component: () => import('@/components/Layout'),
             redirect: 'dashboard',
             children: [
-                {
-                    path: '/dashboard',
-                    component: () => import('@/components/Dashboard'),
-                    name: 'dashboard',
-                    meta: {
-                        requiresLogin: true,
-                        title: 'dashboard',
-                        icon: 'dashboard',
-                        noCache: true,
-                        admin: false
-                    },
-                    children: [
-                        {
-                            path: '/projects/:id?/detail/',
-                            component: () => import('@/components/Projects/Detail'),
-                            name: 'projectDetail',
+                    {
+                        path: '/dashboard',
+                        component: () => import('@/components/Dashboard'),
+                        name: 'dashboard',
                             meta: {
                                 requiresLogin: true,
-                                title: 'project',
-                                icon: 'project',
+                                title: 'dashboard',
+                                icon: 'dashboard',
                                 noCache: true,
                                 admin: false
                             },
+                    },
+                    {
+                        path: '/projects/:id?/detail/',
+                        component: () => import('@/components/Projects/Detail'),
+                        name: 'projectDetail',
+                        meta: {
+                            requiresLogin: true,
+                            title: 'project',
+                            icon: 'project',
+                            noCache: true,
+                            admin: false
                         },
-                    ]
-                },
-                // USER ROUTE
-                {
-                    path: '/users',
-                    component: () => import('@/components/Users/List'),
-                    name: 'userList',
-                    meta: {
-                        requiresLogin: true,
-                        title: 'user',
-                        icon: 'user',
-                        noCache: true,
-                        admin: true
                     },
-                },
-                {
-                    path: '/users/:id?/:action/',
-                    component: () => import('@/components/Users/Form'),
-                    name: 'userForm',
-                    meta: {
-                        requiresLogin: true,
-                        title: 'user',
-                        icon: 'user',
-                        noCache: true,
-                        admin: true
+
+
+                    // USER ROUTE
+                    {
+                        path: '/users',
+                        component: () => import('@/components/Users/List'),
+                        name: 'userList',
+                        meta: {
+                            requiresLogin: true,
+                            title: 'user',
+                            icon: 'user',
+                            noCache: true,
+                            admin: true
+                        },
                     },
-                },
+                    {
+                        path: '/users/:id?/:action/',
+                        component: () => import('@/components/Users/Form'),
+                        name: 'userForm',
+                        meta: {
+                            requiresLogin: true,
+                            title: 'user',
+                            icon: 'user',
+                            noCache: true,
+                            admin: true
+                        },
+                    },
             ]
         },
         { path: '*', component: () => import('@/components/Dashboard'), }

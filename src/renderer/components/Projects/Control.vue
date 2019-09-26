@@ -1,14 +1,43 @@
 <template>
         <div>
-            <ul class="lista-controls">
-                <li @click="changeTab('file')">Files</li>
-                <li @click="changeTab('timeline')">Chat</li>
-                <li @click="changeTab('console')">Console</li>
-            </ul>
+            <v-tabs
+                    v-model="tab"
+                    dark
+                    grow
+            >
+                <v-tab
+                        href="#tab-1"
+                        class="tab1">
+                    Files
+                </v-tab>
+                <v-tab
+                        href="#tab-2">
+                    Chat
+                </v-tab>
+                <v-tab
+                        href="#tab-3">
+                    Console
+                </v-tab>
+            </v-tabs>
 
-            <ProjectFile v-if="tab == 'file'"/>
-            <ProjectTimeline v-if="tab == 'timeline'"/>
-            <ProjectConsole v-if="tab == 'console'" />
+            <v-tabs-items v-model="tab">
+                <v-tab-item
+                        value="tab-1"
+                >
+                    <ProjectFile />
+                </v-tab-item>
+                <v-tab-item
+                        value="tab-2"
+                >
+                    <ProjectTimeline />
+                </v-tab-item>
+                <v-tab-item
+                        value="tab-3"
+                >
+                    <ProjectConsole />
+                </v-tab-item>
+
+            </v-tabs-items>
 
         </div>
 </template>
@@ -23,7 +52,7 @@
         name: 'ProjectControl',
         data: () => {
             return {
-                tab: 'file'
+                tab: 'tab-1',
             }
         },
         components: {
@@ -36,11 +65,11 @@
         },
         watch: {
             '$route' (to, from) {
-                this.tab = 'file'
+                this.tab = 'tab-1'
             }
         },
         created () {
-            this.tab = 'file'
+            this.tab = 'tab-1'
         },
 
 

@@ -1,27 +1,38 @@
 <template>
     <div id="login">
 
-        <div class="inner">
+        <v-card
+                class="pa-12"
+                width="100%"
+        >
 
-            <a href="" class="logo">
-                <img src="~@/assets/img/logo.png" alt="">
-            </a>
+            <form>
 
-            <div class="form-element">
-                <label>Email:</label>
-                <input type="text" v-model="email" @keyup.enter="login()">
-            </div>
+                <a href="" class="logo">
+                    <img src="~@/assets/img/logo.png" alt="">
+                </a>
 
-            <div class="form-element">
-                <label>Password</label>
-                <input type="password" v-model="password" @keyup.enter="login()">
-            </div>
+                <v-text-field
+                        v-model="email"
+                        label="Email"
+                        @keyup.enter="login()"
+                ></v-text-field>
 
-            <div class="form-button">
-                <input class="btn-form" type="button" value="Login" v-on:click="login()">
-            </div>
+                <v-text-field
+                        v-model="password"
+                        label="Password"
+                        type="password"
+                        @keyup.enter="login()"
+                ></v-text-field>
 
-        </div>
+
+
+                <v-btn color="primary" @click="login">Login</v-btn>
+
+
+            </form>
+
+        </v-card>
 
     </div>
 </template>

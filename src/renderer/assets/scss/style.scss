@@ -3,7 +3,7 @@
 "mixin";
 
 html{
-  font-size: 10px!important;
+  font-size: 16px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -46,13 +46,12 @@ input[type=text]:focus, input[type=email]:focus,input[type=password]:focus, text
 
 
 html,body{
-  background: #252526;
 }
 
 
 h1{
   color: #fff;
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 20px;
   line-height: 4rem;
 
@@ -65,7 +64,7 @@ h1{
 
 
 body{
-  font-size: 1.2rem;
+  font-size: 0.75rem;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #ffffff;
 }
@@ -101,7 +100,7 @@ div.modal{
       padding: 10px;
       > i.fa-user, > i.fa-user-crown{
         display: block;
-        font-size: 50px;
+        font-size: 3rem;
         margin-bottom: 20px;
 
       }
@@ -116,7 +115,7 @@ div.modal{
 
         > i.fa-trash-alt{
           display: inline-block;
-          font-size: 20px;
+          font-size: 1.25rem;
           margin-left: 20px;
 
         }
@@ -142,12 +141,12 @@ header{
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 999;
+  z-index: 100;
 
 .version{
   position: absolute;
   top: 63px;
-  font-size: 10px;
+  font-size: 0.625rem;
   left: 180px;
 }
 
@@ -181,7 +180,7 @@ header{
     i{
       order: 2;
       color: #d10071;
-      font-size: 2rem;
+      font-size: 1.25rem;
       margin-left: 20px;
     }
     i.fa-search{
@@ -207,10 +206,12 @@ section{
   display: flex!important;
   justify-content: space-between;
 
+  &.section_sx{
+    padding: 0;
+  }
+
   .col_sx{
-    height: calc(100vh - 104px);
     overflow-y: auto;
-    width: 30%;
   }
 
 
@@ -223,9 +224,50 @@ section{
 
 
     .dashboard{
-    height: calc(100vh - 104px);
-    overflow-y: auto;
-    width: calc(50% - 20px);
+      height: calc(100vh - 104px);
+      overflow-y: auto;
+      width: 100%;
+
+      .container_full{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .inner_sx {
+        width: 40%;
+        height: calc( 100vh - 206px );
+
+        & > div:first-child {
+          height: 100%;
+        }
+
+        & .fileCards {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          height: 100%;
+
+          & > div {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+
+            & .treeCnt {
+              margin: 15px 0px;
+              flex-grow: 1;
+              overflow: scroll;
+            }
+          }
+        }
+      }
+
+      .inner_dx {
+        width: calc(60% - 20px);
+      }
 
       .lista-controls{
         text-align: left;
@@ -242,7 +284,7 @@ section{
 
 
       .console {
-        height: calc(100vh - 314px);
+        height: calc(100vh - 234px);
         background: #333333;
         flex-direction: column;
         padding: 20px;
@@ -261,7 +303,7 @@ section{
 
 
       .file{
-        height: calc(100vh - 314px);
+        height: calc(100vh - 234px);
         background: #333333;
         padding: 20px;
         justify-content: space-between;
@@ -283,7 +325,7 @@ section{
 
 
     .timeline{
-      height: calc(100vh - 314px);
+      height: calc(100vh - 234px);
       background: #333333;
       flex-direction: column;
       padding: 20px;
@@ -304,7 +346,7 @@ section{
         background: rgba(#fff, .1);
         width: 100%;
         height: 10%;
-
+        align-items: center;
         display: flex;
 
         input[type=text],input[type=email],input[type=password],textarea{
@@ -340,18 +382,11 @@ section{
 
     i{
       color: #d10071;
-      font-size: 3rem;
+      font-size: 2rem;
       margin-right: 20px;
     }
 
     .inner{
-      h1{
-        color: #fff;
-        font-size: 2rem;
-        margin-bottom: 0;
-        line-height: 3rem;
-
-      }
       .content{
         color: #fff;
         @include contenuti();
@@ -435,7 +470,7 @@ section{
 
       &.user {
         font-weight: bold;
-        font-size: 1.3rem;
+        font-size: 0.75rem;
         margin-bottom: 10px;
       }
 
@@ -449,7 +484,7 @@ section{
       i{
         position: absolute;
         left: calc(100% + 20px);
-        font-size: 20px;
+        font-size: 1.25rem;
         top: 50%;
         transform: translateY(-50%);
       }
@@ -473,7 +508,7 @@ section{
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        font-size: 25px;
+        font-size: 1.5rem;
       }
 
 
@@ -492,7 +527,7 @@ section{
           position: absolute;
           left: auto;
           right: calc(100% + 20px);
-          font-size: 20px;
+          font-size: 1.25rem;
           top: 50%;
           transform: translateY(-50%);
         }
@@ -573,7 +608,7 @@ section{
       background: #333333;
       padding: 10px;
       position: relative;
-      font-size: 1.5rem;
+      font-size: 1rem;
       display: flex;
       align-items: center;
 
@@ -595,13 +630,13 @@ section{
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
-          font-size: 20px;
+          font-size: 1.25rem;
         }
       }
 
 
       .now{
-        font-size: 11px;
+        font-size: 0.75rem;
       }
 
 
@@ -620,7 +655,6 @@ section{
   .project-list{
     > li{
       background: #333333;
-      margin-bottom: 10px;
       padding: 10px;
       position: relative;
 
@@ -646,7 +680,7 @@ section{
 
         i{
           color: #d10071;
-          font-size: 3rem;
+          font-size: 2rem;
           margin-right: 20px;
         }
         > a.state{
@@ -654,7 +688,7 @@ section{
           right: 20px;
           top: 20px;
           i{
-            font-size: 2rem;
+            font-size: 1.25rem;
           }
         }
 
@@ -670,12 +704,6 @@ section{
             align-items: center;
           }
 
-          h1{
-            color: #fff;
-            font-size: 2rem;
-            margin-bottom: 0;
-            line-height: 3rem;
-          }
 
         }
 
@@ -697,7 +725,7 @@ section{
 
       h2{
         color:rgba(#fff, .3);
-        font-size: 1.2rem;
+        font-size: 0.75rem;
         margin-bottom: 10px;
         width: 100%;
         overflow-x: hidden;
@@ -735,9 +763,10 @@ section{
 .div_project_list{
     background: #333333;
     margin-bottom: 10px;
-    padding: 20px;
+    padding: 10px 20px;
     display: flex;
     position: relative;
+    width: 100%;
 
 
     &.update{
@@ -753,7 +782,7 @@ section{
 
     i{
       color: #d10071;
-      font-size: 3rem;
+      font-size: 2rem;
       margin-right: 20px;
     }
     > a.state{
@@ -761,7 +790,7 @@ section{
       right: 20px;
       top: 20px;
       i{
-        font-size: 2rem;
+        font-size: 1.25rem;
       }
     }
 
@@ -775,18 +804,28 @@ section{
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .info-project{
+
+          .box-title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+            > div {
+              margin-left: 30px;
+            }
+
+          }
+
+        }
       }
 
-      h1{
-        color: #fff;
-        font-size: 2rem;
-        margin-bottom: 10px;
-        line-height: 3rem;
-      }
 
       h2{
         color: #fff;
-        font-size: 1.6rem;
+        font-size: 1rem;
         margin-bottom: 10px;
       }
 
@@ -797,11 +836,10 @@ section{
 
 
         ul{
-          margin-top: 20px;
           display: flex;
           li{
             i{
-              font-size: 3rem;
+              font-size: 2rem;
             }
           }
         }
@@ -929,7 +967,7 @@ display: block;
     left: 50%;
     top: calc(50% + 17px);
     transform: translate(-50%, -50%);
-    font-size: 33px;
+    font-size: 2rem;
   }
 }
 
@@ -1044,7 +1082,7 @@ display: block;
     padding: 15px;
 
     i{
-      font-size: 30px;
+      font-size: 2rem;
     }
   }
 }
@@ -1076,8 +1114,6 @@ display: block;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  border: 1px solid rgba(255,255,255,.4);
-  padding: 20px;
 }
 
 
@@ -1123,18 +1159,10 @@ display: block;
 
     i{
       color: #d10071;
-      font-size: 3rem;
-      margin-right: 20px;
+      font-size: 2rem;
     }
 
     .inner{
-      h1{
-        color: #fff;
-        font-size: 2rem;
-        margin-bottom: 0;
-        line-height: 3rem;
-
-      }
       .content{
         color: #fff;
         @include contenuti();
@@ -1167,4 +1195,55 @@ display: block;
 
 .theme--dark.v-data-table thead tr th, .v-data-table td {
   vertical-align: middle;
+}
+.tab1{
+  margin-left: 0!important;
+}
+
+aside.v-navigation-drawer{
+  top: 81px!important;
+  height: calc(100% - 81px)!important;
+}
+
+.logo-container{
+  display: flex;
+  align-items: center;
+}
+
+.project-folder{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  i{
+    font-size: 0.8rem;
+    color: #ddd;
+  }
+}
+
+.subtitle_widget{
+  height: 50px;
+}
+
+.container_lista_elementi_multipli{
+  margin-bottom: 10px;
+  ul.lista_elementi_multipli{
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    li{
+      border: 1px solid hsla(0,0%,100%,.7);
+      padding: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
 }

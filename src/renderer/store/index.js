@@ -20,7 +20,10 @@ const state  = {
     messages        : [],
     modal           : false,
     opz             : null,
-    userOnline      : []
+    userOnline      : [],
+    preload         : false,
+    preloadPerc     : 0,
+    appMenu         : false
 }
 
 const store = new Vuex.Store({
@@ -48,6 +51,15 @@ const store = new Vuex.Store({
         },
         userOnline: (state) => {
             return state.userOnline
+        },
+        preload: (state) => {
+            return state.preload
+        },
+        preloadPerc: (state) => {
+            return state.preloadPerc
+        },
+        appMenu: (state) => {
+            return state.appMenu
         },
         getField,
     },
@@ -89,6 +101,18 @@ const store = new Vuex.Store({
         },
         closeModal(context){
             context.commit('closeModal')
+        },
+        openPreload(context){
+            context.commit('openPreload')
+        },
+        closePreload(context){
+            context.commit('closePreload')
+        },
+        setPreloadPerc(context, value){
+            context.commit('setPreloadPerc', value)
+        },
+        setAppMenu(context){
+            context.commit('setAppMenu')
         }
 
     },
@@ -129,7 +153,7 @@ const store = new Vuex.Store({
             }
 
         },
-        changeAuthenticated: (context, value) => {
+        changeAuthenticated: (state, value) => {
             state.isAuthenticated = value
         },
         addMessage (state, content) {
@@ -144,7 +168,7 @@ const store = new Vuex.Store({
             state.opz = obj.opz
 
         },
-        setUserOnline(context, obj){
+        setUserOnline(state, obj){
             console.log(obj);
             state.userOnline = []
             for (var key in obj) {
@@ -153,6 +177,20 @@ const store = new Vuex.Store({
         },
         closeModal(state){
             state.modal = false
+        },
+        openPreload(state){
+           state.preload = true
+            state.preloadPerc = 0
+        },
+        closePreload(state){
+            state.preload = false
+            state.preloadPerc = 0
+        },
+        setPreloadPerc(state, value){
+            state.preloadPerc = value
+        },
+        setAppMenu (state, data) {
+            state.appMenu = data
         },
         updateField,
     }

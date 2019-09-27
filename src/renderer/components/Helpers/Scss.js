@@ -1,7 +1,6 @@
-/* global Promise */
 var nodefs = require('node-fs');
 var path = require('path');
-var sass = require('node-sass');
+var sass = __non_webpack_require__('node-sass');
 var postcss = require('postcss');
 var eyeglass = require('eyeglass');
 const autoprefixer = require('autoprefixer')
@@ -51,6 +50,7 @@ ProcessorNew.prototype.process = function (options) {
         var mapContent = JSON.parse(result.map.toString());
         var sources = mapContent.sources;
         var files = [];
+        var currentSassFile = ''
         for( currentSassFile of sources) {
             if( !currentSassFile.includes('already-imported') ) {
                 var sourceName = path.resolve(path.dirname(options.from), currentSassFile);
@@ -68,7 +68,7 @@ ProcessorNew.prototype.process = function (options) {
         var sourceContent = result.css.toString();
         sourceContent = sourceContent.replace(/url\((.*?)\)/g,
             function (fullMatch, urlMatch) {
-                urlMatchFileName = path.basename(trimUrlValue(urlMatch));
+                var urlMatchFileName = path.basename(trimUrlValue(urlMatch));
                 for( var i=0; i<files.length; i++) {
                     if( urlMatchFileName == files[i].fileName ) {
                         var fullFileName = path.resolve(files[i].fileFolder, trimUrlValue(urlMatch));
@@ -100,8 +100,9 @@ ProcessorNew.prototype.process = function (options) {
 		if (!options.sourceMapDisabled) {
 			nodefs.writeFileSync(options.to + '.map', result.map);
 		}
-	};
-	trimUrlValue = (value) => {
+    };
+     
+	var trimUrlValue = (value) => {
         var beginSlice, endSlice;
         value = value.trim();
         beginSlice = value.charAt(0) === '\'' || value.charAt(0) === '"' ? 1 : 0;
@@ -111,7 +112,7 @@ ProcessorNew.prototype.process = function (options) {
         return value.slice(beginSlice, endSlice).trim();
     }
 
-    removeURL = (value) => {
+    var removeURL = (value) => {
 	    return value.replace('url("', '').replace("url('", '')
     }
 
@@ -130,6 +131,4 @@ ProcessorNew.prototype.processMany = function (optionsArray) {
 };
 
 
-module.exports = function () {
-	return new ProcessorNew();
-};
+export default new ProcessorNew()

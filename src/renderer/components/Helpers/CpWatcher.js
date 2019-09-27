@@ -25,10 +25,21 @@ class CpWatcher {
                 var currentFileExtension = path.extname(name)
                 var currentFileName = path.basename(name, currentFileExtension)
 
-
                 if( evt == 'update' || evt == 'remove' ) {
-                    console.log(evt, name)
                     this.store.dispatch('projectsModule/scanProjectFolder', { local_folder: projectObj.local_folder })
+                }
+                if( currentFileExtension == '.scss' ) {
+
+                    compileScss.default
+                        .process({
+                            from: '/Users/federicovarese/Documents/ARCHIVIO/SITI/TEST-CUBEPACK/PR1/17/minisiti/sass/global.scss',
+                            to: '/Users/federicovarese/Documents/ARCHIVIO/SITI/TEST-CUBEPACK/PR1/17/minisiti/css/global.css',
+                        })
+                        .then(function() {
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });    
                 }
             })
             this.currentWatcher.on('ready', () => {

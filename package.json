@@ -58,7 +58,7 @@
     "dotenv": "^8.1.0",
     "eyeglass": "^2.4.1",
     "ftp": "^0.3.10",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mkdir-recursive": "^0.4.0",
     "node-fs": "^0.1.7",
     "node-watch": "^0.6.3",

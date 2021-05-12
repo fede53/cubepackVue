@@ -62,7 +62,7 @@
     "mkdir-recursive": "^0.4.0",
     "node-fs": "^0.1.7",
     "node-watch": "^0.6.3",
-    "postcss": "^7.0.18",
+    "postcss": "^8.2.10",
     "socket.io-client": "^2.2.0",
     "vue": "^2.5.16",
     "vue-context": "^4.0.3",
